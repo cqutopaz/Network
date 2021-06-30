@@ -1,0 +1,12 @@
+Value Filldown Chassis_ID (\d+)
+Value Filldown Slot_ID (\w+)
+Value Sub_ID ([\d|-])
+Value Serial_No (\w+)
+Value Manu_date (\d+-\d+-\d+)
+
+Start
+  ^${Chassis_ID}\s+${Slot_ID}\s+${Sub_ID}\s+${Serial_No}\s+${Manu_date} -> Record
+  ^\s*${Slot_ID}\s+${Sub_ID}\s+${Serial_No}\s+${Manu_date} -> Record
+  ^\s+${Sub_ID}\s+${Serial_No}\s+${Manu_date} -> Record
+
+EOF
