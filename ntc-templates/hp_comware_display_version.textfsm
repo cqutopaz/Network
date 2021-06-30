@@ -1,0 +1,10 @@
+Value DEVICE_NAME (\S+)
+Value VERSION (.+)
+Value UPTIME (.+)
+Value Last_Reboot_Reason (.+)
+
+Start
+  ^H3C\s+Comware\s+Software\,\s*${VERSION}
+  ^Copyright
+  ^\s*H3C\s+${DEVICE_NAME}\s+uptime\s+is\s+${UPTIME}
+  ^\s*Last\s+reboot\s+reason\s*\:\s*${Last_Reboot_Reason} -> Record
