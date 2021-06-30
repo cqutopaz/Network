@@ -1,0 +1,17 @@
+Value Device_ID (\d+)
+Value ROLE (.+)
+Value VRP_VERSION (\S+)
+Value PRODUCT_VERSION (.+)
+Value MODEL (.+)
+Value UPTIME (.+)
+
+
+Start
+  ^Chassis\s+${Device_ID}\s+\(${ROLE}\)
+  ^.*software,\s+Version\s+${VRP_VERSION}\s+\(${PRODUCT_VERSION}\)
+  ^(HUAWEI|Quidway)\s+${MODEL}\s+uptime\s+is\s+${UPTIME} -> Record
+  #below for HUAWEI's Stack device
+  ^${MODEL}\s+${Device_ID}\(${ROLE}\)\s+:\s*uptime\s+is\s+${UPTIME}
+  ^\s*Software\s+Version\s+:.+Version\s+${VRP_VERSION}\s+\(${PRODUCT_VERSION}\) -> Record
+
+EOF
