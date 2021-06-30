@@ -1,0 +1,20 @@
+Value Required INTERFACE (\S+\/\d{1,2})
+Value Transciver_Type (\w+)
+Value Connector_Type (\w+)
+Value WaveLength_nm (\d+)
+Value Vendor (\w+)
+Value Serial_No (\w+)
+Value Rx_dBM (\S+)
+Value Tx_dBM (\S+)
+
+Start
+  ^${INTERFACE}\s+transceiver\s+information: 
+  ^\s+Transceiver\s+Type\s+:${Transciver_Type}
+  ^\s+Connector\s+Type\s+:${Connector_Type}
+  ^\s+Wavelength\(nm\)\s+:${WaveLength_nm}
+  ^\s+Manu.*Number\s+:${Serial_No}
+  ^\s+Vendor\s+Name\s+:${Vendor}
+  ^\s+(Current)?\s+R(X|x)?\s+Power\(dBM\)\s+:${Rx_dBM}
+  ^\s+(Current)?\s+T(X|x)?\s+Power\(dBM\)\s+:${Tx_dBM} -> Record
+
+EOF
