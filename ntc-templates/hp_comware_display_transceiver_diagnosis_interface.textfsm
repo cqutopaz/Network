@@ -1,0 +1,10 @@
+Value Required INTERFACE (\S+\/\d{1,2})
+Value Temperature (\d+)
+Value Rx_dBM (\S+)
+Value Tx_dBM (\S+)
+
+Start
+  ^${INTERFACE}\s+transceiver\s+diagnostic\s+information\:
+  ^\s+${Temperature}\s+\S+\s+\S+\s+${Rx_dBM}\s+${Tx_dBM} -> Record
+
+EOF
