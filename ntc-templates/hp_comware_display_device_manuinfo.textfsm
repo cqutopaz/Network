@@ -1,0 +1,19 @@
+Value Filldown CHASSIS_ID (\d+)
+Value Required SLOT_TYPE (Slot|Subslot|Fan|Power|Chassis)
+Value Required SLOT_ID (\d+|self)
+Value DEVICE_NAME (\S+|\s+)
+Value DEVICE_SERIAL_NUMBER (\S+|\s+)
+Value MANUFACTURING_DATE (\S+|\s+)
+Value VENDOR_NAME (\S+|\s+)
+
+
+Start
+  ^\s*Chassis\s+${CHASSIS_ID}
+  ^\s*${SLOT_TYPE}\s+${SLOT_ID}
+  ^\s*The\s+operation\s+is\s+not\s+supported\s+ -> Record Start
+  ^\s*Failed\s+to\s+display  -> Record Start
+  ^\s*DEVICE_NAME\s*:\s*${DEVICE_NAME}
+  ^\s*DEVICE_SERIAL_NUMBER\s*:\s*${DEVICE_SERIAL_NUMBER}
+  ^\s*MANUFACTURING_DATE\s*:\s*${MANUFACTURING_DATE}
+  ^\s*VENDOR_NAME\s*:\s*${VENDOR_NAME} -> Record
+  ^\s*$$
