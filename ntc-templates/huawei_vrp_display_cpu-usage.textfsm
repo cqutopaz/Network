@@ -1,0 +1,16 @@
+Value CPU_Usage (\d+\%)
+Value CPU_Usage_In1m (\d+\%)
+Value CPU_Usage_In5m (\d+\%)
+Value CPU_MAX_Usage (\S+)
+Value MAX_CPU_Usage_Time (\d{4}-\d{2}-\d{2}\s+\d{2}\:\d{2}\:\d{2})
+
+Start
+  ^CPU\s+Usage\s+Stat\.\s+Cycle\:\s+60\s+\(Second\) -> HUAWEICPU
+  ^. -> Error
+
+HUAWEICPU
+  ^CPU\s+Usage\s+\:\s+${CPU_Usage}\s+Max\:\s+${CPU_MAX_Usage}
+  ^CPU\s+utilization\s+for\s+five\s+seconds:\s+\d+\%:\s+one\s+minute:\s+${CPU_Usage_In1m}:\s+five\s+minutes:\s+${CPU_Usage_In5m}
+  ^Max\s+CPU\s+\D+${MAX_CPU_Usage_Time} -> Record
+
+EOF
