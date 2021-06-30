@@ -1,0 +1,13 @@
+Value Filldown Chassis_ID (\d)
+Value Filldown SLOT_ID (\w+)
+Value SUB_ID (\S+)
+Value TYPE_NAME (\S+)
+Value POWER_STATUS ([a-zA-Z]+)
+Value STATUS ([a-zA-Z]+)
+
+Start
+  ^Chassis\s+${Chassis_ID}
+  ^${SLOT_ID}\s+${SUB_ID}\s+${TYPE_NAME}\s+Present\s+${POWER_STATUS}\s+Registered\s+${STATUS}\s+ -> Record
+  ^\s+${SUB_ID}\s+${TYPE_NAME}\s+Present\s+${POWER_STATUS}\s+Registered\s+${STATUS}\s+ -> Record
+
+EOF
